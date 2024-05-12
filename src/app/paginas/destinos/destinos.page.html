@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Destinos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Lista de Favoritos y botones de acceso ventana Modal -->
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let destinoFav of favoritos">
+      <ion-label>{{destinoFav}}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="abrirModalPrecio(destinoFav)">
+          <ion-icon name="airplane" />
+        </ion-button>
+        <ion-label> {{ destinoFav?.precioAprox | currency: 'CLP'}} </ion-label>
+      </ion-buttons>
+      <ion-buttons slot="end">
+       <!--  <ion-button (click)="tomarFoto(destinoFav.preview)" /> -->
+          <ion-icon name="camera" />
+      </ion-buttons>
+      <img *ngIf="foto != null" [src]="foto.webPath" alt="Foto" />
+      <ion-buttons slot="end">
+        <ion-button (click)="abrirModalEliminarDestino(destinoFav)">
+          <ion-icon name="trash" />
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+
+
+  <!-- Ventana Modal Precio -->
+  <ion-modal [isOpen]="modalCambioValor">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="setOpen(false)">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Valor vuelo ida y vuelta</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="guardarPrecio()">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-input [(ngModel)]="precioAproxStr" label="Valor del vuelo ida y vuelta en USD" labelPlacement="stacked"/>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+<!-- Ventana Modal Eliminar -->
+  <ion-modal [isOpen]="modalEliminar">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="setOpen(false)">NO</ion-button>
+          </ion-buttons>
+          <ion-title>¿Desea eliminar el destino?</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="eliminarDestino">SI</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ng-template>
+  </ion-modal>
+
+</ion-list>  
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "prueba3proghibrida",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
