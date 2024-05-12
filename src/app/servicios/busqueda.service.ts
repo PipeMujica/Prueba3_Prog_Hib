@@ -6,7 +6,7 @@ import { ResultadoWebSer, destinosResultadoWS, resultadoBusquedaWS } from '../da
 })
 export class BusquedaService {
   
-  apiKey = "5ae2e3f221c38a28845f05b6505d2850284c5ece8687a7cab2e77bf3"
+  apiKey = " numero de apikey "
   urlPrincipal = "https://api.opentripmap.com/0.1/en/places/"
 
   constructor() { }
